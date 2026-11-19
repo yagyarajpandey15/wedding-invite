@@ -159,14 +159,14 @@ export default function CardPanelLeft({ onOpenLocation, isContinuous = false }: 
 
       {/* 6. Tilak Card (Itinerary) */}
       <div className="px-6 py-3 flex flex-col items-center">
-        {/* Royal Tilak Ceremony Artwork / Arched Frame */}
-        <div className="w-[125px] sm:w-[140px] aspect-[9/15] rounded-t-full rounded-b-2xl overflow-hidden shadow-md border-2 border-[#D4AF37]/60 my-1.5 bg-[#FFF9E6] relative transform hover:scale-105 transition-transform duration-300">
+        {/* Royal Tilak Ceremony Animated GIF / Royal Gold-Bordered Frame */}
+        <div className="w-[175px] sm:w-[195px] aspect-[16/10] rounded-2xl overflow-hidden shadow-md border-2 border-[#D4AF37]/60 my-1.5 bg-[#FFF9E6] relative transform hover:scale-105 transition-transform duration-300">
           <img
-            src="/card-assets/tilak-ceremony.webp"
+            src="/card-assets/tilak-ceremony-loop.gif"
             alt="Royal Tilak Ceremony"
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none rounded-t-full rounded-b-2xl" />
+          <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none rounded-2xl" />
         </div>
 
         <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#681622] tracking-wide mt-1">
