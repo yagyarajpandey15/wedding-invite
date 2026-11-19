@@ -75,13 +75,17 @@ export const wedding = {
     { date: "Friday, 12 Feb 2027", title: "Vidaai & Blessings", subtitle: "Warm Wishes & Goodbyes", icon: "moon", side: "right" },
   ],
   expectedBy: [
-    "Mr. Siya Ram Kumar",
     "Mr. Ram Naresh Kumar",
     "Mr. Adyanand Kumar",
     "Mr. Nityanand Kumar",
     "Rohit & Ansh",
   ],
   expectedByNote: "and the whole Kumar family",
+  wellWisher: {
+    title: "Well Wisher",
+    hindi: "॥ शुभाकांक्षी ॥",
+    name: "Mr. Siya Ram Kumar",
+  },
   dressCode: {
     title: "Dress Code",
     style: "TRADITIONAL / ETHNIC",

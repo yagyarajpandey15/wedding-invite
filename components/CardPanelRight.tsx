@@ -299,6 +299,26 @@ export default function CardPanelRight({
             </p>
           </div>
 
+          {/* Delicate Ornamental Divider */}
+          <div className="my-4 flex items-center justify-center gap-2.5 opacity-80" aria-hidden="true">
+            <span className="h-px w-8 bg-white/30" />
+            <span className="text-[10px] text-white/70">✦</span>
+            <span className="h-px w-8 bg-white/30" />
+          </div>
+
+          {/* Well Wisher Section */}
+          <div className="text-center">
+            <p className="font-serif text-xs text-white/80 tracking-widest uppercase mb-0.5">
+              {wedding.wellWisher.hindi}
+            </p>
+            <h4 className="font-script text-2xl sm:text-3xl text-white font-normal drop-shadow-sm mb-1">
+              {wedding.wellWisher.title}
+            </h4>
+            <p className="font-serif text-sm font-semibold text-white tracking-wide">
+              {wedding.wellWisher.name}
+            </p>
+          </div>
+
           <button
             onClick={onOpenRsvp}
             className="mt-4 px-7 py-2 rounded-full bg-[#FAF8F5] text-[#681622] text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.2em] uppercase shadow-md hover:bg-white transition-all transform hover:scale-105 active:scale-95"
@@ -359,15 +379,6 @@ export default function CardPanelRight({
                   src="/card-assets/couple-circle.png"
                   alt="Abhishek & Simran"
                   className="w-full h-full object-cover filter grayscale contrast-105"
-                />
-              </div>
-
-              {/* Delicate Botanical Wreath wrapping bottom right */}
-              <div className="absolute -bottom-3 right-0 w-[50px] sm:w-[60px] pointer-events-none z-20">
-                <img
-                  src="/card-assets/flower-intact-flip.png"
-                  alt="Floral decoration"
-                  className="w-full h-auto drop-shadow-sm"
                 />
               </div>
             </div>
