@@ -90,33 +90,54 @@ export default function CardPanelLeft({ onOpenLocation, isContinuous = false }: 
       {/* 3. The Groom & The Bride Cards */}
       <div className="px-5 py-3 space-y-3.5 relative z-10">
         {/* Groom Card */}
-        <div className="rounded-2xl border border-[#681622]/20 bg-white/70 backdrop-blur-sm p-4 text-center shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 inset-x-0 h-1 bg-[#681622]/40" />
-          <p className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-[#681622]">
-            The Groom
-          </p>
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3D3536] mt-0.5">
+        <div className="rounded-2xl border border-[#D4AF37]/35 bg-[#FFFDF9]/90 backdrop-blur-sm p-4 text-center shadow-sm relative overflow-hidden transition-all duration-300 hover:shadow-md hover:border-[#D4AF37]/60">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+
+          <div className="flex items-center justify-center gap-2 mb-0.5">
+            <span className="h-px w-6 bg-[#D4AF37]/50" />
+            <p className="text-[10px] sm:text-[11px] font-serif uppercase tracking-[0.3em] text-[#681622] font-semibold">
+              The Groom
+            </p>
+            <span className="h-px w-6 bg-[#D4AF37]/50" />
+          </div>
+
+          <h3 className="font-serif text-2xl sm:text-[28px] font-semibold tracking-wide text-[#681622] mt-0.5 mb-1 leading-snug">
             {wedding.groom.full}
           </h3>
-          <p className="text-[11px] text-[#6e6163] mt-1.5">
-            Son of <span className="font-semibold text-[#4A3E40]">{wedding.groom.father}</span> &amp; <span className="font-semibold text-[#4A3E40]">{wedding.groom.mother}</span>
+
+          <p className="text-xs sm:text-[13px] font-serif text-[#554A4C] mt-1.5 leading-relaxed">
+            <span className="italic font-light text-[#7A6E70]">Son of</span>{" "}
+            <span className="font-semibold text-[#2E2426]">{wedding.groom.father}</span>
+            <span className="text-[#681622]/60 mx-1 font-serif">&amp;</span>
+            <span className="font-semibold text-[#2E2426]">{wedding.groom.mother}</span>
           </p>
-          <p className="text-[11px] text-[#6e6163] mt-0.5">
-            Grandson of <span className="font-semibold text-[#4A3E40]">{wedding.groom.grandfather}</span>
+          <p className="text-xs sm:text-[13px] font-serif text-[#554A4C] mt-0.5 leading-relaxed">
+            <span className="italic font-light text-[#7A6E70]">Grandson of</span>{" "}
+            <span className="font-semibold text-[#2E2426]">{wedding.groom.grandfather}</span>
           </p>
         </div>
 
         {/* Bride Card */}
-        <div className="rounded-2xl border border-[#681622]/20 bg-white/70 backdrop-blur-sm p-4 text-center shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 inset-x-0 h-1 bg-[#681622]/40" />
-          <p className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-[#681622]">
-            The Bride
-          </p>
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3D3536] mt-0.5">
+        <div className="rounded-2xl border border-[#D4AF37]/35 bg-[#FFFDF9]/90 backdrop-blur-sm p-4 text-center shadow-sm relative overflow-hidden transition-all duration-300 hover:shadow-md hover:border-[#D4AF37]/60">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+
+          <div className="flex items-center justify-center gap-2 mb-0.5">
+            <span className="h-px w-6 bg-[#D4AF37]/50" />
+            <p className="text-[10px] sm:text-[11px] font-serif uppercase tracking-[0.3em] text-[#681622] font-semibold">
+              The Bride
+            </p>
+            <span className="h-px w-6 bg-[#D4AF37]/50" />
+          </div>
+
+          <h3 className="font-serif text-2xl sm:text-[28px] font-semibold tracking-wide text-[#681622] mt-0.5 mb-1 leading-snug">
             {wedding.bride.full}
           </h3>
-          <p className="text-[11px] text-[#6e6163] mt-1.5">
-            Daughter of <span className="font-semibold text-[#4A3E40]">{wedding.bride.father}</span> &amp; <span className="font-semibold text-[#4A3E40]">{wedding.bride.mother}</span>
+
+          <p className="text-xs sm:text-[13px] font-serif text-[#554A4C] mt-1.5 leading-relaxed">
+            <span className="italic font-light text-[#7A6E70]">Daughter of</span>{" "}
+            <span className="font-semibold text-[#2E2426]">{wedding.bride.father}</span>
+            <span className="text-[#681622]/60 mx-1 font-serif">&amp;</span>
+            <span className="font-semibold text-[#2E2426]">{wedding.bride.mother}</span>
           </p>
         </div>
       </div>
