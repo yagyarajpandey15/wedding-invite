@@ -35,13 +35,13 @@ export const wedding = {
     subtitle: "Ubtan, Auspicious Turmeric & Celebration",
   },
   mehndi: {
-    title: "Mehndi & Mocktail party",
+    title: "Mehndi & Sangeet",
     weekday: "Wednesday",
     date: "10 February 2027",
     day: "10",
     month: "February",
     year: "2027",
-    subtitle: "Henna, Music, Refreshing Mocktails & Dance",
+    subtitle: "Henna, Music, Dance & Celebration",
   },
   ceremony: {
     title: "Wedding Ceremony",
@@ -69,7 +69,7 @@ export const wedding = {
   itinerary: [
     { date: "Sunday, 07 Feb 2027", title: "Tilak Ceremony", subtitle: "Auspicious Tilak Rituals", icon: "tilak", side: "left" },
     { date: "Tuesday, 09 Feb 2027", title: "Haldi Ceremony", subtitle: "Ubtan, Colors & Sunshine", icon: "haldi", side: "right" },
-    { date: "Wednesday, 10 Feb 2027", title: "Mehndi & Mocktails", subtitle: "Henna, Music & Celebration", icon: "mocktail", side: "left" },
+    { date: "Wednesday, 10 Feb 2027", title: "Mehndi & Sangeet", subtitle: "Henna, Music & Celebration", icon: "mocktail", side: "left" },
     { date: "Thursday, 11 Feb 2027", title: "Wedding Ceremony", subtitle: "Sacred Pheras at Shiv Mandir", icon: "church", side: "right" },
     { date: "Thursday, 11 Feb 2027", title: "Grand Feast", subtitle: "Dinner & Reception", icon: "dinner", side: "left" },
     { date: "Friday, 12 Feb 2027", title: "Vidaai & Blessings", subtitle: "Warm Wishes & Goodbyes", icon: "moon", side: "right" },

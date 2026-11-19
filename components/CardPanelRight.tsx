@@ -105,13 +105,13 @@ export default function CardPanelRight({
             </div>
           </div>
 
-          {/* 3. Mehndi & Mocktail party (Left) */}
+          {/* 3. Mehndi & Sangeet (Left) */}
           <div className="relative flex items-center mb-6">
             <div className="w-1/2 pr-5 text-right flex flex-col items-end">
               <MocktailIcon className="w-6 h-6 text-[#681622] mb-0.5" />
-              <span className="font-serif text-xs font-bold text-[#681622]">Mehndi &amp; Mocktails</span>
+              <span className="font-serif text-xs font-bold text-[#681622]">Mehndi &amp; Sangeet</span>
               <span className="text-[10px] text-[#3D3536] font-semibold">Wed, 10 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Henna, Beats &amp; Party</span>
+              <span className="text-[9px] text-[#706466]">Henna, Beats &amp; Music</span>
             </div>
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />
