@@ -21,6 +21,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preload critical opening envelope poster and video */}
+        <link
+          rel="preload"
+          as="image"
+          href="/card-assets/envelope-poster-mobile.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="video"
+          href="/card-assets/card-opening.mp4"
+          type="video/mp4"
+        />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

@@ -60,14 +60,26 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
       <div className="absolute inset-0 bg-radial from-[#681622]/40 via-transparent to-black pointer-events-none" />
 
       {/* Video Container (Mobile centered view) */}
-      <div className="relative w-full max-w-[430px] h-full sm:h-auto sm:max-h-[92vh] sm:aspect-[9/16] flex flex-col justify-center items-center overflow-hidden bg-black shadow-2xl sm:rounded-3xl sm:border border-[#D4AF37]/30">
+      <div className="relative w-full max-w-[430px] h-full sm:h-auto sm:max-h-[92vh] sm:aspect-[9/16] flex flex-col justify-center items-center overflow-hidden bg-[#1F070E] shadow-2xl sm:rounded-3xl sm:border border-[#D4AF37]/30">
+        {/* Instant Envelope First-Paint Image (loads instantly at 0ms, eliminates black screen delay) */}
+        <img
+          src="/card-assets/envelope-poster-mobile.webp"
+          alt="Wedding Invitation Envelope"
+          className={`absolute inset-0 w-full h-full object-contain sm:object-cover pointer-events-none transition-opacity duration-300 z-10 ${
+            isPlaying ? "opacity-0" : "opacity-100"
+          }`}
+          loading="eager"
+        />
+
         <video
           ref={videoRef}
           src="/card-assets/card-opening.mp4"
+          poster="/card-assets/envelope-poster-mobile.webp"
           playsInline
           preload="auto"
+          onPlaying={() => setIsPlaying(true)}
           onEnded={handleVideoEnded}
-          className="w-full h-full object-contain sm:object-cover"
+          className="w-full h-full object-contain sm:object-cover relative z-0"
         />
 
         {/* ONLY "tap to open..." at the place of the play button over the center wax seal */}
