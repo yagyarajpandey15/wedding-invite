@@ -146,6 +146,12 @@ export default function CardPanelLeft({
             <span className="text-[#681622]/60 mx-1 font-serif">&amp;</span>
             <span className="font-semibold text-[#2E2426]">{wedding.bride.mother}</span>
           </p>
+          {wedding.bride.grandfather && (
+            <p className="text-xs sm:text-[13px] font-serif text-[#554A4C] mt-0.5 leading-relaxed">
+              <span className="italic font-light text-[#7A6E70]">Granddaughter of</span>{" "}
+              <span className="font-semibold text-[#2E2426]">{wedding.bride.grandfather}</span>
+            </p>
+          )}
         </div>
       </div>
 

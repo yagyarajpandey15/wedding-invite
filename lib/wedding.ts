@@ -12,6 +12,7 @@ export const wedding = {
     full: "Simran Choudhary",
     father: "Mr. Pankaj Choudhary",
     mother: "Mrs. Rani Devi",
+    grandfather: "Shri Sitram Chaudhary",
   },
   title: "Abhishek & Simran - Wedding Invitation",
   dateFormatted: "11 . 02 . 2027",
@@ -96,6 +97,7 @@ export const wedding = {
     "Mr. Adyanand Kumar",
     "Mr. Nityanand Kumar",
     "Rohit & Ansh",
+    "Kartik & Siddharth",
   ],
   expectedByNote: "and the whole Kumar family",
   wellWisher: {
