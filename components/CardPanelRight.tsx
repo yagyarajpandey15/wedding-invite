@@ -29,91 +29,91 @@ export default function CardPanelRight({
   return (
     <div className="relative w-full paper-linen text-center overflow-hidden flex flex-col justify-between">
       {/* 2. Wedding Itinerary Timeline */}
-      <div className="pt-8 pb-5 px-6 relative z-0">
+      <div className="pt-8 pb-5 px-4 sm:px-6 relative z-0">
         <h3 className="font-serif text-2xl font-bold text-[#681622] tracking-wide mb-6">
           Wedding Itinerary
         </h3>
 
         {/* Vertical Timeline container with central vertical line and nodes */}
-        <div className="relative max-w-[300px] mx-auto py-2">
+        <div className="relative max-w-[340px] sm:max-w-[360px] mx-auto py-2">
           {/* Vertical connecting line */}
           <div className="absolute left-1/2 top-3 bottom-3 w-[1.5px] bg-[#681622]/40 -translate-x-1/2" />
 
           {/* 1. Tilak Ceremony (Left) */}
           <div className="relative flex items-center mb-6">
-            <div className="w-1/2 pr-5 text-right flex flex-col items-end">
-              <ChampagneIcon className="w-6 h-6 text-[#681622] mb-0.5" />
-              <span className="font-serif text-xs font-bold text-[#681622]">Tilak Ceremony</span>
-              <span className="text-[10px] text-[#3D3536] font-semibold">Sun, 07 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Auspicious Tilak Rituals</span>
+            <div className="w-1/2 pr-3.5 sm:pr-5 text-right flex flex-col items-end">
+              <ChampagneIcon className="w-6 h-6 text-[#681622] mb-1" />
+              <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Tilak Ceremony</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Sun, 07 Feb 2027</span>
+              <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Auspicious Tilak Rituals</span>
             </div>
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />
-            <div className="w-1/2 pl-5" />
+            <div className="w-1/2 pl-3.5 sm:pl-5" />
           </div>
 
           {/* 2. Haldi Ceremony (Right) */}
           <div className="relative flex items-center mb-6">
-            <div className="w-1/2 pr-5" />
+            <div className="w-1/2 pr-3.5 sm:pr-5" />
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />
-            <div className="w-1/2 pl-5 text-left flex flex-col items-start">
-              <HaldiIcon className="w-6 h-6 text-[#681622] mb-0.5" />
-              <span className="font-serif text-xs font-bold text-[#681622]">Haldi Ceremony</span>
-              <span className="text-[10px] text-[#3D3536] font-semibold">Tue, 09 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Ubtan, Colors &amp; Sunshine</span>
+            <div className="w-1/2 pl-3.5 sm:pl-5 text-left flex flex-col items-start">
+              <HaldiIcon className="w-6 h-6 text-[#681622] mb-1" />
+              <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Haldi Ceremony</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Tue, 09 Feb 2027</span>
+              <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Ubtan, Colors &amp; Sunshine</span>
             </div>
           </div>
 
           {/* 3. Mehndi & Sangeet (Left) */}
           <div className="relative flex items-center mb-6">
-            <div className="w-1/2 pr-5 text-right flex flex-col items-end">
-              <MocktailIcon className="w-6 h-6 text-[#681622] mb-0.5" />
-              <span className="font-serif text-xs font-bold text-[#681622]">Mehndi &amp; Sangeet</span>
-              <span className="text-[10px] text-[#3D3536] font-semibold">Wed, 10 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Henna, Beats &amp; Music</span>
+            <div className="w-1/2 pr-3.5 sm:pr-5 text-right flex flex-col items-end">
+              <MocktailIcon className="w-6 h-6 text-[#681622] mb-1" />
+              <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Mehndi &amp; Sangeet</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Wed, 10 Feb 2027</span>
+              <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Henna, Beats &amp; Music</span>
             </div>
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />
-            <div className="w-1/2 pl-5" />
+            <div className="w-1/2 pl-3.5 sm:pl-5" />
           </div>
 
           {/* 4. Wedding Ceremony (Right) */}
           <div className="relative flex items-center mb-6">
-            <div className="w-1/2 pr-5" />
+            <div className="w-1/2 pr-3.5 sm:pr-5" />
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />
-            <div className="w-1/2 pl-5 text-left flex flex-col items-start">
-              <ChurchIcon className="w-6 h-6 text-[#681622] mb-0.5" />
-              <span className="font-serif text-xs font-bold text-[#681622]">Wedding Ceremony</span>
-              <span className="text-[10px] text-[#3D3536] font-semibold">Thu, 11 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Sacred Pheras &amp; Nuptials</span>
+            <div className="w-1/2 pl-3.5 sm:pl-5 text-left flex flex-col items-start">
+              <ChurchIcon className="w-6 h-6 text-[#681622] mb-1" />
+              <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Wedding Ceremony</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Thu, 11 Feb 2027</span>
+              <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Sacred Pheras &amp; Nuptials</span>
             </div>
           </div>
 
           {/* 5. Reception & Dinner (Left) */}
           <div className="relative flex items-center mb-6">
-            <div className="w-1/2 pr-5 text-right flex flex-col items-end">
-              <DinnerIcon className="w-6 h-6 text-[#681622] mb-0.5" />
-              <span className="font-serif text-xs font-bold text-[#681622]">Grand Feast</span>
-              <span className="text-[10px] text-[#3D3536] font-semibold">Thu, 11 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Dinner &amp; Blessings</span>
+            <div className="w-1/2 pr-3.5 sm:pr-5 text-right flex flex-col items-end">
+              <DinnerIcon className="w-6 h-6 text-[#681622] mb-1" />
+              <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Grand Feast</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Thu, 11 Feb 2027</span>
+              <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Dinner &amp; Blessings</span>
             </div>
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />
-            <div className="w-1/2 pl-5" />
+            <div className="w-1/2 pl-3.5 sm:pl-5" />
           </div>
 
           {/* 6. Vidaai (Right) */}
           <div className="relative flex items-center">
-            <div className="w-1/2 pr-5" />
+            <div className="w-1/2 pr-3.5 sm:pr-5" />
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />
-            <div className="w-1/2 pl-5 text-left flex flex-col items-start">
-              <MoonIcon className="w-6 h-6 text-[#681622] mb-0.5" />
-              <span className="font-serif text-xs font-bold text-[#681622]">Vidaai</span>
-              <span className="text-[10px] text-[#3D3536] font-semibold">Fri, 12 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Warm Blessings</span>
+            <div className="w-1/2 pl-3.5 sm:pl-5 text-left flex flex-col items-start">
+              <MoonIcon className="w-6 h-6 text-[#681622] mb-1" />
+              <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Vidaai</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Fri, 12 Feb 2027</span>
+              <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Warm Blessings</span>
             </div>
           </div>
         </div>
