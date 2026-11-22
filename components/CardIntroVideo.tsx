@@ -84,7 +84,10 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
           onPlaying={() => setIsPlaying(true)}
           onEnded={handleVideoEnded}
           className="w-full h-full object-contain sm:object-cover relative z-0"
-        />
+        >
+          <source src="/card-assets/card-opening.mkv" type="video/x-matroska" />
+          <source src="/card-assets/card-opening.mp4" type="video/mp4" />
+        </video>
 
         {/* ONLY "tap to open..." at the place of the play button over the center wax seal */}
         {!isPlaying && (
