@@ -298,11 +298,11 @@ export default function CardPanelLeft({
       </div>
 
       {/* 8. Pichwai Design Artwork Banner */}
-      <div className="relative w-full mt-4 h-[200px] sm:h-[240px] overflow-hidden shadow-sm bg-[#FAF8F5]">
+      <div className="relative w-full mt-4 overflow-hidden shadow-sm bg-[#FAF8F5]">
         <img
           src="/card-assets/pichwai-design.jpg"
           alt="Traditional Indian Wedding Design"
-          className="w-full h-full object-cover object-center block"
+          className="w-full h-auto object-cover block"
         />
       </div>
     </div>
