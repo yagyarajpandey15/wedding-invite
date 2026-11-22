@@ -44,7 +44,9 @@ export default function CardPanelRight({
             <div className="w-1/2 pr-3.5 sm:pr-5 text-right flex flex-col items-end">
               <ChampagneIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Tilak Ceremony</span>
-              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Sun, 07 Feb 2027 • 03:00 PM</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">
+                Sun, 07 Feb 2027 <span className="whitespace-nowrap">• 03:00&nbsp;PM</span>
+              </span>
               <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Auspicious Tilak Rituals</span>
             </div>
             {/* Center dot node */}
@@ -60,7 +62,9 @@ export default function CardPanelRight({
             <div className="w-1/2 pl-3.5 sm:pl-5 text-left flex flex-col items-start">
               <HaldiIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Haldi Ceremony</span>
-              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Tue, 09 Feb 2027 • 11:00 AM</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">
+                Tue, 09 Feb 2027 <span className="whitespace-nowrap">• 11:00&nbsp;AM</span>
+              </span>
               <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Ubtan, Colors &amp; Sunshine</span>
             </div>
           </div>
@@ -70,7 +74,9 @@ export default function CardPanelRight({
             <div className="w-1/2 pr-3.5 sm:pr-5 text-right flex flex-col items-end">
               <MocktailIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Sangeet &amp; Mocktail</span>
-              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Wed, 10 Feb 2027 • 08:00 PM</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">
+                Wed, 10 Feb 2027 <span className="whitespace-nowrap">• 08:00&nbsp;PM</span>
+              </span>
               <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Henna, Beats &amp; Music</span>
             </div>
             {/* Center dot node */}
@@ -87,7 +93,9 @@ export default function CardPanelRight({
               <ChurchIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Wedding Ceremony</span>
               <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Thu, 11 Feb 2027</span>
-              <span className="text-[11px] sm:text-xs text-[#681622] font-bold leading-tight mt-0.5">Baraat Prasthan: 07:00 PM (Teyai)</span>
+              <span className="text-[11px] sm:text-xs text-[#681622] font-bold leading-tight mt-0.5">
+                Baraat Prasthan: <span className="whitespace-nowrap">07:00&nbsp;PM</span> (Teyai)
+              </span>
               <span className="text-[10px] sm:text-[11px] text-[#706466] leading-tight mt-0.5">Sacred Pheras &amp; Nuptials</span>
             </div>
           </div>

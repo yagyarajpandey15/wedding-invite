@@ -187,7 +187,7 @@ export default function CardPanelLeft({
         </h3>
 
         <p className="text-xs sm:text-sm font-semibold text-[#3D3536] mt-1">
-          {wedding.tilak.weekday}, {wedding.tilak.date} • {wedding.tilak.time}
+          {wedding.tilak.weekday}, {wedding.tilak.date} <span className="whitespace-nowrap">• {wedding.tilak.time}</span>
         </p>
 
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">
@@ -222,7 +222,7 @@ export default function CardPanelLeft({
         </h3>
 
         <p className="text-xs sm:text-sm font-semibold text-[#3D3536] mt-1">
-          {wedding.haldi.weekday}, {wedding.haldi.date} • {wedding.haldi.time}
+          {wedding.haldi.weekday}, {wedding.haldi.date} <span className="whitespace-nowrap">• {wedding.haldi.time}</span>
         </p>
 
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">
@@ -257,7 +257,7 @@ export default function CardPanelLeft({
         </h3>
 
         <p className="text-xs sm:text-sm font-semibold text-[#3D3536] mt-1">
-          {wedding.mehndi.weekday}, {wedding.mehndi.date} • {wedding.mehndi.time}
+          {wedding.mehndi.weekday}, {wedding.mehndi.date} <span className="whitespace-nowrap">• {wedding.mehndi.time}</span>
         </p>
 
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">
