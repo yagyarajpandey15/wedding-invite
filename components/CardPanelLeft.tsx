@@ -187,7 +187,7 @@ export default function CardPanelLeft({
         </h3>
 
         <p className="text-xs sm:text-sm font-semibold text-[#3D3536] mt-1">
-          {wedding.tilak.weekday}, {wedding.tilak.date}
+          {wedding.tilak.weekday}, {wedding.tilak.date} • {wedding.tilak.time}
         </p>
 
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">

@@ -44,7 +44,7 @@ export default function CardPanelRight({
             <div className="w-1/2 pr-3.5 sm:pr-5 text-right flex flex-col items-end">
               <ChampagneIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Tilak Ceremony</span>
-              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Sun, 07 Feb 2027</span>
+              <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">Sun, 07 Feb 2027 • 03:00 PM</span>
               <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Auspicious Tilak Rituals</span>
             </div>
             {/* Center dot node */}
