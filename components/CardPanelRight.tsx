@@ -291,13 +291,29 @@ export default function CardPanelRight({
       {/* 5. Split Bottom Section: Sangeet Playlist & The Couple */}
       <div className="pt-5 pb-8 px-6 relative mt-2 border-t border-[#681622]/15">
         {/* Festive Baraat & Band Baaja Animated Procession */}
-        <div className="mb-4 text-center">
+        <div className="mb-6 text-center">
           <div className="w-[250px] sm:w-[280px] mx-auto pointer-events-none drop-shadow-sm transform hover:scale-105 transition-transform duration-300">
             <img
               src="/card-assets/baraat-band-transparent-loop.gif"
               alt="Band Baaja Baraat Celebration"
               className="w-full h-auto object-contain mx-auto"
             />
+          </div>
+
+          {/* Sender / प्रेषक Details below sticker */}
+          <div className="mt-3 inline-block px-5 py-2.5 rounded-2xl bg-[#681622]/5 border border-[#681622]/15 shadow-xs text-center">
+            <p className="font-serif text-[11px] sm:text-xs font-bold text-[#681622] tracking-widest uppercase">
+              {wedding.sender.combined}
+            </p>
+            <p className="font-serif text-sm sm:text-base font-bold text-[#2A1810] mt-0.5">
+              {wedding.sender.name}
+            </p>
+            <a
+              href={`tel:${wedding.sender.phone}`}
+              className="inline-block text-xs text-[#681622] font-semibold font-sans mt-0.5 tracking-wide hover:underline"
+            >
+              Mo: {wedding.sender.phone}
+            </a>
           </div>
         </div>
 

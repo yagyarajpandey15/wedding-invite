@@ -105,6 +105,13 @@ export const wedding = {
     hindi: "॥ शुभाकांक्षी ॥",
     name: "Mr. Siya Ram Kumar",
   },
+  sender: {
+    title: "Sender",
+    hindi: "॥ प्रेषक ॥",
+    combined: "॥ प्रेषक / Sender ॥",
+    name: "Vidyanand Kumar",
+    phone: "9910202346",
+  },
   dressCode: {
     title: "Dress Code",
     style: "TRADITIONAL / ETHNIC",
