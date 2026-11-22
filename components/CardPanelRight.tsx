@@ -300,20 +300,39 @@ export default function CardPanelRight({
             />
           </div>
 
-          {/* Sender / प्रेषक Details below sticker */}
-          <div className="mt-3 inline-block px-5 py-2.5 rounded-2xl bg-[#681622]/5 border border-[#681622]/15 shadow-xs text-center">
-            <p className="font-serif text-[11px] sm:text-xs font-bold text-[#681622] tracking-widest uppercase">
-              {wedding.sender.combined}
+          {/* Elegant Royal Sender Section */}
+          <div className="mt-4 max-w-[280px] mx-auto relative px-5 py-4 rounded-2xl bg-gradient-to-b from-[#FFFDF9] to-[#F5ECE1] border border-[#D4AF37]/50 ring-1 ring-[#D4AF37]/25 shadow-md text-center">
+            {/* Top Ornamental Flourish */}
+            <div className="flex items-center justify-center gap-2 mb-1.5 opacity-80" aria-hidden="true">
+              <span className="h-px w-6 bg-[#D4AF37]" />
+              <span className="text-[10px] text-[#D4AF37]">✦</span>
+              <span className="h-px w-6 bg-[#D4AF37]" />
+            </div>
+
+            <p className="font-serif text-xs font-bold text-[#681622] tracking-[0.25em] uppercase">
+              {wedding.sender.hindi}
             </p>
-            <p className="font-serif text-sm sm:text-base font-bold text-[#2A1810] mt-0.5">
+            <h4 className="font-script text-2xl sm:text-3xl text-[#681622] -mt-1 mb-0.5">
+              {wedding.sender.title}
+            </h4>
+            <p className="font-serif text-base sm:text-lg font-bold text-[#2A1810] tracking-wide">
               {wedding.sender.name}
             </p>
+
             <a
               href={`tel:${wedding.sender.phone}`}
-              className="inline-block text-xs text-[#681622] font-semibold font-sans mt-0.5 tracking-wide hover:underline"
+              className="mt-2 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#681622] text-[#FAF8F5] hover:bg-[#50101b] text-xs font-sans font-semibold tracking-wider shadow-xs transition-all transform hover:scale-105 active:scale-95"
             >
-              Mo: {wedding.sender.phone}
+              <span className="text-[11px]">📞</span>
+              <span>{wedding.sender.phone}</span>
             </a>
+
+            {/* Bottom Ornamental Flourish */}
+            <div className="flex items-center justify-center gap-2 mt-2.5 opacity-80" aria-hidden="true">
+              <span className="h-px w-6 bg-[#D4AF37]" />
+              <span className="text-[10px] text-[#D4AF37]">✦</span>
+              <span className="h-px w-6 bg-[#D4AF37]" />
+            </div>
           </div>
         </div>
 
