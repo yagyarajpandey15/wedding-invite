@@ -54,17 +54,17 @@ export const wedding = {
   },
   groomVenue: {
     title: "Groom's Residence",
-    name: "Shiv Mandir, Teyai",
+    name: "New Shiv Mandir, Teyai",
     forEvents: "Tilak, Haldi & Mehndi",
     lines: [
-      "Address: Shiv Mandir, Teyai",
+      "Address: New Shiv Mandir, Teyai",
       "Ward No: 7, PO: Dadpur",
-      "Thana & Block: Bhagwanpur",
+      "Thana: Bhagwanpur, Block: Bhagwanpur",
       "District: Begusarai, Bihar - 851133",
     ],
-    fullAddress: "Shiv Mandir, Teyai, Ward No. 7, PO: Dadpur, Thana & Block: Bhagwanpur, Begusarai, Bihar - 851133",
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Shiv%20Mandir%2C%20Teyai%2C%20Begusarai%2C%20Bihar%20851133",
-    embedMapUrl: "https://maps.google.com/maps?q=Shiv%20Mandir%2C%20Teyai%2C%20Begusarai%2C%20Bihar%20851133&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    fullAddress: "New Shiv Mandir, Teyai, Ward No. 7, PO: Dadpur, Thana: Bhagwanpur, Block: Bhagwanpur, Begusarai, Bihar - 851133",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=New+Shiv+Mandir%2C+Teyai%2C+Begusarai%2C+Bihar+851133",
+    embedMapUrl: "https://maps.google.com/maps?q=New%20Shiv%20Mandir%2C%20Teyai%2C%20Begusarai%2C%20Bihar%20851133&t=&z=16&ie=UTF8&iwloc=&output=embed",
     buttonText: "How to reach",
   },
   venue: {
