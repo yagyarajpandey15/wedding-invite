@@ -190,7 +190,7 @@ export default function CardPanelRight({
                   Wedding Venue, Mehan
                 </p>
                 <p className="text-[10px] text-[#706466] leading-tight mt-0.5">
-                  Post: Dandari • PIN: 851211 • Begusarai, Bihar
+                  25°31&apos;14.3&quot;N 86°15&apos;46.1&quot;E • Dandari, Begusarai
                 </p>
               </div>
             </div>
