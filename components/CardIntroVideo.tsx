@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 interface CardIntroVideoProps {
   onComplete: () => void;
@@ -8,25 +8,26 @@ interface CardIntroVideoProps {
 
 export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasStarted, setHasStarted] = useState(false);
   const [isEnding, setIsEnding] = useState(false);
 
-  // Auto-play video directly and immediately on load
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.warn("Direct video autoplay failed:", err);
-      });
-    }
-  }, []);
-
-  const handleUserInteraction = () => {
+  // Handle user tapping the screen to open the envelope
+  const handleClickScreen = () => {
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("wedding:user-gesture"));
     }
+
+    if (!hasStarted) {
+      setHasStarted(true);
+      if (videoRef.current) {
+        videoRef.current.play().catch((err) => {
+          console.warn("Play error:", err);
+        });
+      }
+    }
   };
 
-  // Trigger smooth transition when video ends or when user skips
+  // Trigger smooth transition when video ends
   const handleVideoEnded = () => {
     if (isEnding) return;
     setIsEnding(true);
@@ -37,12 +38,12 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#1F070E] transition-all duration-700 ease-out select-none ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#1F070E] transition-all duration-700 ease-out select-none cursor-pointer ${
         isEnding
           ? "opacity-0 scale-105 pointer-events-none"
           : "opacity-100 scale-100"
       }`}
-      onClick={handleUserInteraction}
+      onClick={handleClickScreen}
     >
       {/* Ambient background glow */}
       <div className="absolute inset-0 bg-radial from-[#681622]/40 via-transparent to-black pointer-events-none" />
@@ -53,9 +54,8 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
           ref={videoRef}
           src="/card-assets/card-opening.mp4"
           poster="/card-assets/envelope-poster-mobile.webp"
-          autoPlay
-          muted
           playsInline
+          muted
           preload="auto"
           onEnded={handleVideoEnded}
           className="w-full h-full object-contain sm:object-cover relative z-0"
@@ -63,17 +63,16 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
           <source src="/card-assets/card-opening.mp4" type="video/mp4" />
         </video>
 
-        {/* Quick Skip button in top right */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleUserInteraction();
-            handleVideoEnded();
-          }}
-          className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-black/45 backdrop-blur-sm border border-[#D4AF37]/40 text-[#FDFBF7] text-[10px] sm:text-xs font-serif tracking-wider shadow-lg hover:bg-black/70 transition-all cursor-pointer"
-        >
-          Skip &rarr;
-        </button>
+        {/* Center "tap to open..." upfront over the envelope wax seal */}
+        {!hasStarted && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+            <div className="px-5 py-2 rounded-full bg-black/50 backdrop-blur-[2px] border border-[#D4AF37]/60 shadow-2xl animate-pulse">
+              <p className="font-serif italic text-xs sm:text-sm text-[#FDFBF7] tracking-wider drop-shadow-md">
+                tap to open...
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Sender / प्रेषक details in bottom right (Active during opening video only) */}
         <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 pointer-events-none text-right">
