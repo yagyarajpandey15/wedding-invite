@@ -99,6 +99,21 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
             </div>
           </div>
         )}
+
+        {/* Sender / प्रेषक details in bottom right (Active during opening video only) */}
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 pointer-events-none text-right">
+          <div className="bg-black/55 backdrop-blur-[3px] border border-[#D4AF37]/45 rounded-xl px-3.5 py-2 shadow-2xl text-right">
+            <p className="text-[11px] sm:text-xs font-semibold text-[#D4AF37] tracking-wider">
+              प्रेषक <span className="text-[#D4AF37]/60">/</span> Sender
+            </p>
+            <p className="font-serif text-xs sm:text-sm font-bold text-[#FFFDF8] tracking-wide mt-0.5">
+              Vidyanand Kumar
+            </p>
+            <p className="text-[11px] sm:text-xs text-[#E8D7C8] font-sans tracking-wider mt-0.5">
+              9910202346
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
