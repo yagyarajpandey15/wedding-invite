@@ -186,10 +186,10 @@ export default function CardPanelRight({
               <span className="text-base leading-none">📍</span>
               <div>
                 <p className="font-serif text-xs font-bold text-[#681622] leading-tight">
-                  Wedding Venue, Menhan
+                  Wedding Venue, Mehan
                 </p>
                 <p className="text-[10px] text-[#706466] leading-tight mt-0.5">
-                  Plus Code: G7C7+747 • Begusarai, Bihar
+                  Post: Dandari • PIN: 851211 • Begusarai, Bihar
                 </p>
               </div>
             </div>
@@ -207,7 +207,7 @@ export default function CardPanelRight({
           {/* Interactive Google Map Iframe */}
           <div className="relative w-full h-[190px] sm:h-[210px] bg-[#E5E3DF]">
             <iframe
-              title="Google Map Location - Wedding Venue, Teyai"
+              title="Google Map Location - Wedding Venue, Mehan"
               src={wedding.venue.embedMapUrl}
               className="w-full h-full border-0 filter contrast-[1.02]"
               loading="lazy"
