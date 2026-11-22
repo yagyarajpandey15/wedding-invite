@@ -60,7 +60,6 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
           onEnded={handleVideoEnded}
           className="w-full h-full object-contain sm:object-cover relative z-0"
         >
-          <source src="/card-assets/card-opening.mkv" type="video/x-matroska" />
           <source src="/card-assets/card-opening.mp4" type="video/mp4" />
         </video>
 
