@@ -15,6 +15,10 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
   const handleClickScreen = () => {
     if (!videoRef.current) return;
 
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("wedding:user-gesture"));
+    }
+
     if (!isPlaying) {
       videoRef.current.muted = false; // User gesture enables unmuted audio
       videoRef.current

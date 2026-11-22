@@ -6,9 +6,11 @@ import CardPanelRight from "./CardPanelRight";
 import { VenueModal, RsvpModal, PlaylistModal } from "./Modals";
 import BackgroundMusic from "./BackgroundMusic";
 import CardIntroVideo from "./CardIntroVideo";
+import { wedding } from "../lib/wedding";
 
 export default function WeddingCard() {
   const [showVenue, setShowVenue] = useState(false);
+  const [selectedVenue, setSelectedVenue] = useState<"groom" | "wedding">("wedding");
   const [showRsvp, setShowRsvp] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
@@ -30,13 +32,27 @@ export default function WeddingCard() {
       >
         {/* Top Part of the Mobile Invitation */}
         <CardPanelLeft
-          onOpenLocation={() => setShowVenue(true)}
+          onOpenGroomLocation={() => {
+            setSelectedVenue("groom");
+            setShowVenue(true);
+          }}
+          onOpenWeddingLocation={() => {
+            setSelectedVenue("wedding");
+            setShowVenue(true);
+          }}
+          onOpenLocation={() => {
+            setSelectedVenue("wedding");
+            setShowVenue(true);
+          }}
           isContinuous={true}
         />
 
         {/* Bottom Part of the Mobile Invitation */}
         <CardPanelRight
-          onOpenVenue={() => setShowVenue(true)}
+          onOpenVenue={() => {
+            setSelectedVenue("wedding");
+            setShowVenue(true);
+          }}
           onOpenRsvp={() => setShowRsvp(true)}
           onOpenPlaylist={() => setShowPlaylist(true)}
         />
@@ -55,10 +71,14 @@ export default function WeddingCard() {
       )}
 
       {/* Floating Background Romantic Music Button */}
-      <BackgroundMusic />
+      <BackgroundMusic isCardOpen={!showIntro} />
 
       {/* Interactive Modals */}
-      <VenueModal isOpen={showVenue} onClose={() => setShowVenue(false)} />
+      <VenueModal
+        isOpen={showVenue}
+        onClose={() => setShowVenue(false)}
+        venue={selectedVenue === "groom" ? wedding.groomVenue : wedding.venue}
+      />
 
       <RsvpModal isOpen={showRsvp} onClose={() => setShowRsvp(false)} />
 

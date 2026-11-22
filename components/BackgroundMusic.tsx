@@ -1,126 +1,184 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
-export default function BackgroundMusic() {
+interface BackgroundMusicProps {
+  isCardOpen?: boolean;
+}
+
+export default function BackgroundMusic({ isCardOpen = true }: BackgroundMusicProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const isManuallyPausedRef = useRef(false);
 
-  // Play a soft, beautiful romantic acoustic harp / music box melody
-  const startMelody = () => {
-    try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioCtx) return;
+  // Play function ensuring loop and full volume
+  const playAudio = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
 
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new AudioCtx();
-      }
+    audio.volume = 1.0;
+    audio.loop = true;
 
-      const ctx = audioCtxRef.current;
-      if (ctx.state === "suspended") {
-        ctx.resume();
-      }
+    audio
+      .play()
+      .then(() => {
+        setIsPlaying(true);
+      })
+      .catch((err) => {
+        // Autoplay may be restricted until first card interaction
+        console.log("Audio waiting for user interaction:", err?.message || err);
+      });
+  }, []);
 
-      // Romantic chord notes in Hz (Canon in D / Wedding romantic progression)
-      const notes = [
-        293.66, 369.99, 440.0, 587.33, // D major
-        220.0, 277.18, 329.63, 440.0,  // A major
-        246.94, 293.66, 369.99, 493.88, // B minor
-        185.0, 220.0, 277.18, 369.99,  // F# minor
-        196.0, 246.94, 293.66, 392.0,  // G major
-        146.83, 185.0, 220.0, 293.66,  // D major
-        196.0, 246.94, 293.66, 392.0,  // G major
-        220.0, 277.18, 329.63, 440.0   // A major
-      ];
-
-      let step = 0;
-
-      const playNextNote = () => {
-        if (!audioCtxRef.current) return;
-        const now = ctx.currentTime;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        // Music box / chime timbre with gentle sine/triangle wave
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(notes[step % notes.length], now);
-
-        // Gentle envelope (soft attack, bell-like decay)
-        gain.gain.setValueAtTime(0.001, now);
-        gain.gain.exponentialRampToValueAtTime(0.08, now + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 1.2);
-
-        step++;
-      };
-
-      // Play note every 380ms
-      playNextNote();
-      timerRef.current = setInterval(playNextNote, 380);
-      setIsPlaying(true);
-    } catch (e) {
-      console.warn("Audio playback not allowed without user gesture", e);
-    }
-  };
-
-  const stopMelody = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-    if (audioCtxRef.current && audioCtxRef.current.state === "running") {
-      audioCtxRef.current.suspend();
-    }
+  // Pause function
+  const pauseAudio = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
     setIsPlaying(false);
-  };
+  }, []);
 
+  // When user clicks the floating music button
   const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
     if (isPlaying) {
-      stopMelody();
+      // User explicitly paused -> do NOT auto-resume
+      isManuallyPausedRef.current = true;
+      pauseAudio();
     } else {
-      startMelody();
+      // User explicitly resumed -> play continuously
+      isManuallyPausedRef.current = false;
+      playAudio();
     }
   };
 
+  // Prime audio when envelope is tapped
   useEffect(() => {
+    const handleGesture = () => {
+      if (audioRef.current) {
+        audioRef.current.load();
+      }
+    };
+
+    window.addEventListener("wedding:user-gesture", handleGesture);
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-      if (audioCtxRef.current) audioCtxRef.current.close();
+      window.removeEventListener("wedding:user-gesture", handleGesture);
+    };
+  }, []);
+
+  // When card opens, automatically start playing continuously
+  useEffect(() => {
+    if (isCardOpen && !isManuallyPausedRef.current) {
+      playAudio();
+    } else if (!isCardOpen) {
+      pauseAudio();
+    }
+  }, [isCardOpen, playAudio, pauseAudio]);
+
+  // Ensure playback starts on first touch/interaction on the opened card if initial autoplay was blocked
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      if (isCardOpen && !isManuallyPausedRef.current) {
+        const audio = audioRef.current;
+        if (audio && audio.paused) {
+          playAudio();
+        }
+      }
+    };
+
+    window.addEventListener("click", handleUserInteraction);
+    window.addEventListener("touchstart", handleUserInteraction);
+    window.addEventListener("pointerdown", handleUserInteraction);
+
+    return () => {
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("pointerdown", handleUserInteraction);
+    };
+  }, [isCardOpen, playAudio]);
+
+  // Sync state with native audio events
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
+    const onEnded = () => {
+      // Continuous loop guarantee
+      if (!isManuallyPausedRef.current) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      }
+    };
+
+    audio.addEventListener("play", onPlay);
+    audio.addEventListener("pause", onPause);
+    audio.addEventListener("ended", onEnded);
+
+    return () => {
+      audio.removeEventListener("play", onPlay);
+      audio.removeEventListener("pause", onPause);
+      audio.removeEventListener("ended", onEnded);
     };
   }, []);
 
   return (
-    <div className="fixed bottom-5 right-5 z-40">
-      <button
-        onClick={toggleMusic}
-        aria-label={isPlaying ? "Pausar música" : "Reproducir música romántica"}
-        title={isPlaying ? "Pausar música" : "Reproducir música romántica"}
-        className={`relative flex items-center justify-center w-12 h-12 rounded-full shadow-lg transition-all transform hover:scale-110 active:scale-95 ${
-          isPlaying
-            ? "bg-[#681622] text-white ring-4 ring-[#681622]/20 animate-pulse"
-            : "bg-white/95 text-[#681622] border border-[#681622]/30 hover:bg-white"
-        }`}
-      >
-        {isPlaying ? (
-          <span className="flex items-center gap-0.5 h-4">
-            <span className="w-0.5 h-4 bg-white animate-pulse" />
-            <span className="w-0.5 h-3 bg-white animate-pulse delay-75" />
-            <span className="w-0.5 h-5 bg-white animate-pulse delay-150" />
-            <span className="w-0.5 h-2 bg-white animate-pulse" />
-          </span>
-        ) : (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-          </svg>
+    <>
+      {/* Hidden audio element loading the Bengali wedding song */}
+      <audio
+        ref={audioRef}
+        src="/card-assets/wedding-song.mp3"
+        preload="auto"
+        loop
+        playsInline
+      />
+
+      {/* Floating Music Control Button */}
+      <div className="fixed bottom-5 right-5 z-40 flex items-center gap-2">
+        {/* Subtle tooltip invite only when manually paused */}
+        {!isPlaying && isCardOpen && isManuallyPausedRef.current && (
+          <div
+            onClick={toggleMusic}
+            className="cursor-pointer hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FAF8F5]/90 border border-[#D4AF37]/50 shadow-md backdrop-blur-sm text-[11px] font-serif text-[#681622] hover:bg-white transition-all animate-bounce"
+          >
+            <span>🎵</span>
+            <span>Resume Music</span>
+          </div>
         )}
-      </button>
-    </div>
+
+        <button
+          onClick={toggleMusic}
+          aria-label={isPlaying ? "Pause wedding music" : "Play wedding music"}
+          title={isPlaying ? "Pause music" : "Play Bengali wedding song"}
+          className={`relative flex items-center justify-center w-12 h-12 rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 ${
+            isPlaying
+              ? "bg-[#681622] text-[#FDFBF7] ring-4 ring-[#D4AF37]/40 shadow-[#681622]/40"
+              : "bg-[#FAF8F5] text-[#681622] border-2 border-[#D4AF37]/60 hover:bg-white"
+          }`}
+        >
+          {isPlaying ? (
+            /* Animated Equalizer sound waves */
+            <span className="flex items-center gap-[3px] h-5">
+              <span className="w-[3px] h-3 bg-[#FDFBF7] rounded-full animate-[pulse_0.6s_ease-in-out_infinite]" />
+              <span className="w-[3px] h-5 bg-[#D4AF37] rounded-full animate-[pulse_0.8s_ease-in-out_infinite_0.15s]" />
+              <span className="w-[3px] h-4 bg-[#FDFBF7] rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.3s]" />
+              <span className="w-[3px] h-2 bg-[#D4AF37] rounded-full animate-[pulse_0.9s_ease-in-out_infinite_0.1s]" />
+            </span>
+          ) : (
+            /* Musical note icon */
+            <svg
+              className="w-5 h-5 text-[#681622] transform -rotate-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+          )}
+        </button>
+      </div>
+    </>
   );
 }
-

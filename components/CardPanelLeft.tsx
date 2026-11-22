@@ -8,11 +8,18 @@ import { ChurchIcon, ChampagneIcon, HeartOrnament, HaldiIcon, MocktailIcon } fro
 import { wedding } from "../lib/wedding";
 
 interface CardPanelLeftProps {
-  onOpenLocation: () => void;
+  onOpenGroomLocation?: () => void;
+  onOpenWeddingLocation?: () => void;
+  onOpenLocation?: () => void;
   isContinuous?: boolean;
 }
 
-export default function CardPanelLeft({ onOpenLocation, isContinuous = false }: CardPanelLeftProps) {
+export default function CardPanelLeft({
+  onOpenGroomLocation,
+  onOpenWeddingLocation,
+  onOpenLocation,
+  isContinuous = false,
+}: CardPanelLeftProps) {
   return (
     <div className="relative w-full paper-linen text-center overflow-hidden flex flex-col justify-between">
       {/* 1. Hero Photo Section */}
@@ -182,10 +189,10 @@ export default function CardPanelLeft({ onOpenLocation, isContinuous = false }: 
         </p>
 
         <button
-          onClick={onOpenLocation}
+          onClick={onOpenGroomLocation || onOpenLocation}
           className="mt-3 px-6 py-1.5 sm:py-2 rounded-full bg-[#681622] text-white text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.2em] uppercase shadow-sm hover:bg-[#50101b] transition-all transform hover:scale-105 active:scale-95"
         >
-          {wedding.venue.buttonText}
+          {wedding.groomVenue.buttonText}
         </button>
       </div>
 
@@ -217,10 +224,10 @@ export default function CardPanelLeft({ onOpenLocation, isContinuous = false }: 
         </p>
 
         <button
-          onClick={onOpenLocation}
+          onClick={onOpenGroomLocation || onOpenLocation}
           className="mt-3 px-6 py-1.5 sm:py-2 rounded-full bg-[#681622] text-white text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.2em] uppercase shadow-sm hover:bg-[#50101b] transition-all transform hover:scale-105 active:scale-95"
         >
-          {wedding.venue.buttonText}
+          {wedding.groomVenue.buttonText}
         </button>
       </div>
 
@@ -252,10 +259,10 @@ export default function CardPanelLeft({ onOpenLocation, isContinuous = false }: 
         </p>
 
         <button
-          onClick={onOpenLocation}
+          onClick={onOpenGroomLocation || onOpenLocation}
           className="mt-3 px-6 py-1.5 sm:py-2 rounded-full bg-[#681622] text-white text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.2em] uppercase shadow-sm hover:bg-[#50101b] transition-all transform hover:scale-105 active:scale-95"
         >
-          {wedding.venue.buttonText}
+          {wedding.groomVenue.buttonText}
         </button>
       </div>
 
@@ -283,38 +290,20 @@ export default function CardPanelLeft({ onOpenLocation, isContinuous = false }: 
         </p>
 
         <button
-          onClick={onOpenLocation}
+          onClick={onOpenWeddingLocation || onOpenLocation}
           className="mt-3 px-6 py-1.5 sm:py-2 rounded-full bg-[#681622] text-white text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.2em] uppercase shadow-sm hover:bg-[#50101b] transition-all transform hover:scale-105 active:scale-95"
         >
           {wedding.venue.buttonText}
         </button>
       </div>
 
-      {/* 8. Mid Couple Walking Photo (at the end of panel 1) */}
-      <div className="relative w-full mt-4 z-20">
-        <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-[#2D2526]">
-          <img
-            src="/card-assets/walking-photo.png"
-            alt="Abhishek & Simran"
-            className="w-full h-full object-cover object-center filter grayscale contrast-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-
-          {/* Top torn edge into photo */}
-          <TornEdge direction="top" fill="#FAF8F5" className="absolute top-0 inset-x-0" />
-
-          {/* Bottom torn edge */}
-          <TornEdge direction="bottom" fill={isContinuous ? "#681622" : "#FAF8F5"} className="absolute bottom-0 inset-x-0" />
-        </div>
-
-        {/* Complete Botanical Bouquet on bottom right */}
-        <div className="absolute -bottom-8 right-1 sm:right-2 w-[75px] sm:w-[85px] pointer-events-none z-30">
-          <img
-            src="/card-assets/flower-intact-flip.png"
-            alt="Floral decoration"
-            className="w-full h-auto drop-shadow-md"
-          />
-        </div>
+      {/* 8. Pichwai Design Artwork Banner */}
+      <div className="relative w-full mt-4 h-[200px] sm:h-[240px] overflow-hidden shadow-sm bg-[#FAF8F5]">
+        <img
+          src="/card-assets/pichwai-design.jpg"
+          alt="Traditional Indian Wedding Design"
+          className="w-full h-full object-cover object-center block"
+        />
       </div>
     </div>
   );

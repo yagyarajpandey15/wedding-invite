@@ -28,48 +28,8 @@ export default function CardPanelRight({
 }: CardPanelRightProps) {
   return (
     <div className="relative w-full paper-linen text-center overflow-hidden flex flex-col justify-between">
-      {/* 1. Envelope Header with Wax Seal */}
-      <div className="relative w-full z-20">
-        {/* Deep Burgundy Envelope Flap */}
-        <div className="burgundy-texture pt-9 pb-12 px-6 relative text-white shadow-md">
-          {/* Envelope fold diagonal lines */}
-          <div className="absolute inset-0 pointer-events-none opacity-25">
-            <svg viewBox="0 0 400 130" preserveAspectRatio="none" className="w-full h-full">
-              <path d="M0,0 L200,105 L400,0" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
-            </svg>
-          </div>
-
-          <h2 className="font-script text-4xl sm:text-5xl text-white font-normal drop-shadow-sm tracking-wide mb-2">
-            You&apos;re Invited
-          </h2>
-
-          {/* 3D Wax Seal Stamp with A & S initials / Floral Relief */}
-          <div className="relative z-20 mx-auto -mb-10 sm:-mb-12 w-20 h-20 sm:w-24 sm:h-24">
-            <div className="w-full h-full rounded-full shadow-seal border border-[#e5d4be]/60 overflow-hidden transform hover:scale-105 transition-transform bg-[#D9C4AC]">
-              <img
-                src="/card-assets/wax-seal.png"
-                alt="Wax seal stamp"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Seamless torn paper edge capping bottom of envelope */}
-          <TornEdge direction="bottom" fill="#FAF8F5" className="absolute bottom-0 inset-x-0" />
-        </div>
-
-        {/* Delicate Botanical Floral Bouquet on top right: z-30 */}
-        <div className="absolute top-1 right-1 sm:right-2 w-[70px] sm:w-[80px] pointer-events-none z-30">
-          <img
-            src="/card-assets/flower-intact-flip.png"
-            alt="Floral decoration"
-            className="w-full h-auto drop-shadow-md"
-          />
-        </div>
-      </div>
-
       {/* 2. Wedding Itinerary Timeline */}
-      <div className="pt-14 pb-5 px-6 relative z-0">
+      <div className="pt-8 pb-5 px-6 relative z-0">
         <h3 className="font-serif text-2xl font-bold text-[#681622] tracking-wide mb-6">
           Wedding Itinerary
         </h3>
@@ -127,7 +87,7 @@ export default function CardPanelRight({
               <ChurchIcon className="w-6 h-6 text-[#681622] mb-0.5" />
               <span className="font-serif text-xs font-bold text-[#681622]">Wedding Ceremony</span>
               <span className="text-[10px] text-[#3D3536] font-semibold">Thu, 11 Feb 2027</span>
-              <span className="text-[9px] text-[#706466]">Sacred Pheras at Shiv Mandir</span>
+              <span className="text-[9px] text-[#706466]">Sacred Pheras &amp; Nuptials</span>
             </div>
           </div>
 
@@ -162,7 +122,7 @@ export default function CardPanelRight({
         <div className="mt-5 pt-2 flex flex-col items-center">
           <div className="w-[230px] sm:w-[260px] pointer-events-none drop-shadow-sm transform hover:scale-105 transition-transform duration-300">
             <img
-              src="/card-assets/doli-white-loop.gif"
+              src="/card-assets/doli-all-white-loop.gif"
               alt="Royal Vidaai Doli Procession"
               className="w-full h-auto object-contain mx-auto mix-blend-multiply"
             />
@@ -226,7 +186,7 @@ export default function CardPanelRight({
               <span className="text-base leading-none">📍</span>
               <div>
                 <p className="font-serif text-xs font-bold text-[#681622] leading-tight">
-                  Shiv Mandir, Menhan
+                  Wedding Venue, Menhan
                 </p>
                 <p className="text-[10px] text-[#706466] leading-tight mt-0.5">
                   Plus Code: G7C7+747 • Begusarai, Bihar
@@ -247,7 +207,7 @@ export default function CardPanelRight({
           {/* Interactive Google Map Iframe */}
           <div className="relative w-full h-[190px] sm:h-[210px] bg-[#E5E3DF]">
             <iframe
-              title="Google Map Location - Shiv Mandir, Teyai"
+              title="Google Map Location - Wedding Venue, Teyai"
               src={wedding.venue.embedMapUrl}
               className="w-full h-full border-0 filter contrast-[1.02]"
               loading="lazy"

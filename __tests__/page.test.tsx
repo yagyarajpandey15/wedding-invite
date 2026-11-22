@@ -9,7 +9,7 @@ describe('Home page', () => {
     expect(screen.getByText('Simran Choudhary')).toBeInTheDocument();
     expect(screen.getByText('Tilak Ceremony')).toBeInTheDocument();
     expect(screen.getByText('Wedding Ceremony')).toBeInTheDocument();
-    expect(screen.getByText('Shiv Mandir')).toBeInTheDocument();
+    expect(screen.getAllByText('Wedding Venue').length).toBeGreaterThan(0);
   });
 
   it('shows the Tap to Reveal gate', () => {

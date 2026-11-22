@@ -37,14 +37,37 @@ export function BaseModal({ isOpen, onClose, title, children }: ModalProps) {
 }
 
 // 1. Venue & How to Reach Modal
-export function VenueModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export interface VenueInfo {
+  name: string;
+  title?: string;
+  forEvents?: string;
+  lines: string[];
+  mapUrl: string;
+  embedMapUrl: string;
+  plusCode?: string;
+}
+
+export function VenueModal({
+  isOpen,
+  onClose,
+  venue = wedding.venue,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  venue?: VenueInfo;
+}) {
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose} title={wedding.venue.name}>
+    <BaseModal isOpen={isOpen} onClose={onClose} title={venue.name}>
       <div className="space-y-3.5 my-2 text-sm text-[#4A3E40]">
         <div className="bg-white/80 p-3.5 rounded-xl border border-[#681622]/15 shadow-sm text-center">
-          <p className="font-serif text-lg font-semibold text-[#681622]">{wedding.venue.name}</p>
+          {venue.forEvents && (
+            <p className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+              {venue.forEvents}
+            </p>
+          )}
+          <p className="font-serif text-lg font-semibold text-[#681622]">{venue.name}</p>
           <div className="text-xs text-[#706466] mt-1.5 space-y-0.5">
-            {wedding.venue.lines.map((l, i) => (
+            {venue.lines.map((l, i) => (
               <p key={i}>{l}</p>
             ))}
           </div>
@@ -53,8 +76,8 @@ export function VenueModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         {/* Embedded Interactive Map */}
         <div className="rounded-xl overflow-hidden border border-[#681622]/20 shadow-sm h-[170px] bg-[#E5E3DF]">
           <iframe
-            title="Google Map - Shiv Mandir"
-            src={wedding.venue.embedMapUrl}
+            title={`Google Map - ${venue.name}`}
+            src={venue.embedMapUrl}
             className="w-full h-full border-0"
             loading="lazy"
             allowFullScreen
@@ -62,7 +85,7 @@ export function VenueModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         </div>
 
         <a
-          href={wedding.venue.mapUrl}
+          href={venue.mapUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 w-full px-6 py-2.5 rounded-full bg-[#681622] text-white text-xs font-semibold tracking-widest uppercase shadow-md hover:bg-[#50101b] transition-all hover:scale-[1.02] active:scale-[0.98]"
