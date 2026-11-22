@@ -5,7 +5,7 @@ export const wedding = {
     full: "Abhishek Kumar",
     father: "Mr. Vidyanand Kumar",
     mother: "Mrs. Kumkum Devi",
-    grandfather: "Late Vaidyanath Kumar",
+    grandfather: "Late Baidyanath Kumar",
   },
   bride: {
     first: "Simran",
