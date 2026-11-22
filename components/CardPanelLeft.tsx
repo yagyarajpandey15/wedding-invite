@@ -222,7 +222,7 @@ export default function CardPanelLeft({
         </h3>
 
         <p className="text-xs sm:text-sm font-semibold text-[#3D3536] mt-1">
-          {wedding.haldi.weekday}, {wedding.haldi.date}
+          {wedding.haldi.weekday}, {wedding.haldi.date} • {wedding.haldi.time}
         </p>
 
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">
@@ -237,7 +237,7 @@ export default function CardPanelLeft({
         </button>
       </div>
 
-      {/* Mehndi & Mocktail Party Card */}
+      {/* Sangeet & Mocktail Party Card */}
       <div className="px-6 py-3 flex flex-col items-center">
         {/* Animated Mehndi Video Badge / Royal Arched Frame */}
         <div className="w-[125px] sm:w-[140px] aspect-[9/15] rounded-t-full rounded-b-2xl overflow-hidden shadow-md border-2 border-[#D4AF37]/60 my-1.5 bg-[#FFF9E6] relative transform hover:scale-105 transition-transform duration-300">
@@ -257,7 +257,7 @@ export default function CardPanelLeft({
         </h3>
 
         <p className="text-xs sm:text-sm font-semibold text-[#3D3536] mt-1">
-          {wedding.mehndi.weekday}, {wedding.mehndi.date}
+          {wedding.mehndi.weekday}, {wedding.mehndi.date} • {wedding.mehndi.time}
         </p>
 
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">
@@ -289,6 +289,10 @@ export default function CardPanelLeft({
 
         <p className="text-xs sm:text-sm font-semibold text-[#3D3536] mt-1">
           {wedding.ceremony.weekday}, {wedding.ceremony.date}
+        </p>
+
+        <p className="text-xs sm:text-sm font-bold text-[#681622] mt-0.5">
+          {wedding.ceremony.baraatPrasthan}
         </p>
 
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">
