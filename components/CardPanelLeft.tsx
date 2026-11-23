@@ -241,14 +241,11 @@ export default function CardPanelLeft({
 
       {/* Sangeet & Mocktail Party Card */}
       <div className="px-6 py-3 flex flex-col items-center">
-        {/* Animated Mehndi Video Badge / Royal Arched Frame */}
+        {/* Animated Sangeet & Mocktail GIF Badge / Royal Arched Frame */}
         <div className="w-[125px] sm:w-[140px] aspect-[9/15] rounded-t-full rounded-b-2xl overflow-hidden shadow-md border-2 border-[#D4AF37]/60 my-1.5 bg-[#FFF9E6] relative transform hover:scale-105 transition-transform duration-300">
-          <video
-            src="/card-assets/mehndi-ceremony.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+          <img
+            src="/card-assets/Gemini_Generated_Gif_rev8bzrev8bzrev8.gif"
+            alt="Sangeet & Mocktail Celebration"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none rounded-t-full rounded-b-2xl" />
