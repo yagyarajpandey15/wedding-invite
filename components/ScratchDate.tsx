@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { wedding } from "../lib/wedding";
 
 interface ScratchDateProps {
@@ -25,26 +25,29 @@ export default function ScratchDate({
   const [scratchProgress, setScratchProgress] = useState(0);
   const [showSparkles, setShowSparkles] = useState(false);
 
-  // Initialize the metallic gold foil on canvas - ONCE per page load
-  const initFoil = () => {
+  // Initialize the metallic gold foil on canvas
+  const initFoil = useCallback(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
-    if (!canvas || !container || isRevealedRef.current) return;
+    if (!canvas || !container || isRevealedRef.current || hasScratchedRef.current) return;
 
-    const rect = container.getBoundingClientRect();
-    const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
-    const width = rect.width || 275;
-    const height = rect.height || 78;
+    // Use container layout dimensions (immune to CSS transform scale)
+    const width = container.offsetWidth || 275;
+    const height = container.offsetHeight || 78;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+    const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 3) : 1;
+
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Reset transform to identity then scale for high-DPI crisp rendering
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.save();
     ctx.scale(dpr, dpr);
+
     ctx.globalCompositeOperation = "source-over";
 
     // 1. Rich metallic gold foil brushed gradient
@@ -60,7 +63,7 @@ export default function ScratchDate({
     ctx.fillRect(0, 0, width, height);
 
     // 2. Subtle metallic shimmer specks / noise
-    ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
     for (let i = 0; i < 90; i++) {
       const rx = (Math.sin(i * 997) * 0.5 + 0.5) * width;
       const ry = (Math.cos(i * 733) * 0.5 + 0.5) * height;
@@ -76,7 +79,7 @@ export default function ScratchDate({
     }
 
     // 3. Delicate golden border inside foil
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
     ctx.lineWidth = 1;
     ctx.strokeRect(4, 4, width - 8, height - 8);
 
@@ -85,35 +88,66 @@ export default function ScratchDate({
     ctx.textBaseline = "middle";
 
     // Subtitle / Prompt
-    ctx.font = "600 9px Montserrat, sans-serif";
+    ctx.font = "600 9px Montserrat, -apple-system, sans-serif";
     ctx.fillStyle = "#5E3E0B";
-    ctx.letterSpacing = "2px";
-    ctx.fillText("✨ SCRATCH TO REVEAL ✨", width / 2, height / 2 - 12);
+    ctx.fillText("✨ SCRATCH TO REVEAL ✨", width / 2, height / 2 - 13);
 
     // Main Coin / Ring prompt
     ctx.font = "bold 13px 'Playfair Display', Georgia, serif";
     ctx.fillStyle = "#432800";
-    ctx.letterSpacing = "1px";
-    ctx.fillText("Wedding Date", width / 2, height / 2 + 5);
+    ctx.fillText("Wedding Date", width / 2, height / 2 + 4);
 
     // Finger / Coin prompt hint
-    ctx.font = "400 8.5px Montserrat, sans-serif";
+    ctx.font = "500 8.5px Montserrat, -apple-system, sans-serif";
     ctx.fillStyle = "#6B4913";
-    ctx.letterSpacing = "1.5px";
-    ctx.fillText("rub gently with finger", width / 2, height / 2 + 20);
+    ctx.fillText("rub gently with finger", width / 2, height / 2 + 19);
 
+    // Restore to identity transform so scratch erasing operations run in direct buffer coordinates
+    ctx.restore();
     isInitializedRef.current = true;
-  };
+  }, []);
 
   useEffect(() => {
-    // Only initialize ONCE when mounted. Never re-initialize during page life!
-    if (!isInitializedRef.current && !isRevealedRef.current) {
-      initFoil();
+    initFoil();
+
+    // Re-verify foil size once card curtain opens / layout stabilizes
+    const timer = setTimeout(() => {
+      if (!hasScratchedRef.current && !isRevealedRef.current) {
+        initFoil();
+      }
+    }, 1200);
+
+    const handleResize = () => {
+      if (!hasScratchedRef.current && !isRevealedRef.current) {
+        initFoil();
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    if (typeof document !== "undefined" && document.fonts) {
+      document.fonts.ready.then(() => {
+        if (!hasScratchedRef.current && !isRevealedRef.current) {
+          initFoil();
+        }
+      });
     }
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [initFoil]);
+
+  const triggerPermanentReveal = useCallback(() => {
+    if (isRevealedRef.current) return;
+    isRevealedRef.current = true;
+    setIsRevealed(true);
+    setShowSparkles(true);
+    setScratchProgress(100);
   }, []);
 
   // Compute scratch percentage
-  const checkScratchPercentage = () => {
+  const checkScratchPercentage = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas || isRevealedRef.current) return;
 
@@ -122,7 +156,9 @@ export default function ScratchDate({
 
     const w = canvas.width;
     const h = canvas.height;
-    const step = 12;
+    if (w === 0 || h === 0) return;
+
+    const step = Math.max(8, Math.round(Math.min(w, h) / 10));
     try {
       const imgData = ctx.getImageData(0, 0, w, h);
       const data = imgData.data;
@@ -132,49 +168,54 @@ export default function ScratchDate({
       for (let y = 0; y < h; y += step) {
         for (let x = 0; x < w; x += step) {
           const index = (y * w + x) * 4 + 3; // alpha channel
-          if (data[index] < 40) {
+          if (data[index] < 80) {
             transparentCount++;
           }
           totalSampled++;
         }
       }
 
-      const percent = Math.round((transparentCount / totalSampled) * 100);
+      const percent = totalSampled > 0 ? Math.round((transparentCount / totalSampled) * 100) : 0;
       setScratchProgress(percent);
 
-      if (percent >= 38) {
+      // Auto reveal threshold: 28% scratched triggers complete sparkle reveal
+      if (percent >= 28) {
         triggerPermanentReveal();
       }
     } catch {
       // Ignore
     }
-  };
+  }, [triggerPermanentReveal]);
 
-  const triggerPermanentReveal = () => {
-    if (isRevealedRef.current) return;
-    isRevealedRef.current = true;
-    setIsRevealed(true);
-    setShowSparkles(true);
-    setScratchProgress(100);
-  };
-
-  // Scratch stroke handler
-  const scratch = (clientX: number, clientY: number) => {
+  // Scratch stroke handler using exact 1:1 buffer coordinates
+  const scratchAtPoint = useCallback((clientX: number, clientY: number) => {
     const canvas = canvasRef.current;
     if (!canvas || isRevealedRef.current) return;
-
-    hasScratchedRef.current = true;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const rect = canvas.getBoundingClientRect();
-    const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
-    const x = (clientX - rect.left) * dpr;
-    const y = (clientY - rect.top) * dpr;
+    if (!rect.width || !rect.height) return;
 
+    // Exact scale factor from client CSS pixels to canvas buffer pixels
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const x = (clientX - rect.left) * scaleX;
+    const y = (clientY - rect.top) * scaleY;
+
+    hasScratchedRef.current = true;
+
+    // Reset transform to identity so eraser coordinates correspond directly to pixel buffer
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalCompositeOperation = "destination-out";
-    ctx.lineWidth = 36 * dpr;
+
+    // Generous eraser radius: 22px in CSS coordinates
+    const brushRadius = 22 * scaleX;
+    const brushLineWidth = 44 * scaleX;
+
+    ctx.lineWidth = brushLineWidth;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
@@ -185,7 +226,7 @@ export default function ScratchDate({
       ctx.stroke();
     } else {
       ctx.beginPath();
-      ctx.arc(x, y, 18 * dpr, 0, Math.PI * 2);
+      ctx.arc(x, y, brushRadius, 0, Math.PI * 2);
       ctx.fill();
     }
 
@@ -195,22 +236,53 @@ export default function ScratchDate({
     if (strokeCounterRef.current % 3 === 0) {
       checkScratchPercentage();
     }
-  };
+  }, [checkScratchPercentage]);
 
+  // Pointer event handlers (mouse, stylus, pointer devices)
   const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (isRevealedRef.current) return;
     isDrawingRef.current = true;
     lastPointRef.current = null;
-    e.currentTarget.setPointerCapture(e.pointerId);
-    scratch(e.clientX, e.clientY);
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      // Ignored if pointer capture unsupported
+    }
+    scratchAtPoint(e.clientX, e.clientY);
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (!isDrawingRef.current || isRevealedRef.current) return;
-    scratch(e.clientX, e.clientY);
+    scratchAtPoint(e.clientX, e.clientY);
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    isDrawingRef.current = false;
+    lastPointRef.current = null;
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      // Ignored
+    }
+    checkScratchPercentage();
+  };
+
+  // Touch event handlers (iOS Safari, Android WebViews)
+  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (isRevealedRef.current || e.touches.length === 0) return;
+    isDrawingRef.current = true;
+    lastPointRef.current = null;
+    const touch = e.touches[0];
+    scratchAtPoint(touch.clientX, touch.clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (!isDrawingRef.current || isRevealedRef.current || e.touches.length === 0) return;
+    const touch = e.touches[0];
+    scratchAtPoint(touch.clientX, touch.clientY);
+  };
+
+  const handleTouchEnd = () => {
     isDrawingRef.current = false;
     lastPointRef.current = null;
     checkScratchPercentage();
@@ -267,8 +339,12 @@ export default function ScratchDate({
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
-          className={`absolute inset-0 cursor-pointer touch-none transition-opacity duration-700 ${
-            isRevealed ? "opacity-0 pointer-events-none hidden" : "opacity-100"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+          className={`absolute inset-0 w-full h-full cursor-pointer touch-none transition-opacity duration-700 ease-out ${
+            isRevealed ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
           style={{ touchAction: "none" }}
           title="Scratch to reveal the wedding date"
@@ -279,6 +355,7 @@ export default function ScratchDate({
       {!isRevealed && (
         <div className="mt-1.5 text-[10px] font-sans">
           <button
+            type="button"
             onClick={triggerPermanentReveal}
             className="text-[#681622]/80 hover:text-[#681622] underline underline-offset-2 transition-colors cursor-pointer"
           >
