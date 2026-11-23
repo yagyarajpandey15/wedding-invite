@@ -141,6 +141,8 @@ export const wedding = {
   rsvp: {
     title: "RSVP & Blessings",
     text: "We eagerly look forward to your gracious presence to bless the couple.",
-    whatsappPhone: "919876543210",
+    phone: "+91 70428 37535",
+    phoneClean: "+917042837535",
+    whatsappPhone: "917042837535",
   },
 };
