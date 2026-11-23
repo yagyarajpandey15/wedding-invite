@@ -289,11 +289,12 @@ export default function ScratchDate({
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center my-3 select-none">
+    <div translate="no" className="notranslate relative flex flex-col items-center justify-center my-3 select-none">
       {/* Outer Card Frame with golden foil rim & drop shadow */}
       <div
         ref={containerRef}
-        className="relative w-[275px] sm:w-[290px] h-[78px] rounded-2xl overflow-hidden shadow-md border-2 border-[#D4AF37]/50 bg-gradient-to-r from-[#FFFDF9] via-[#FAF8F5] to-[#FFFDF9] transition-all"
+        translate="no"
+        className="notranslate relative w-[275px] sm:w-[290px] h-[78px] rounded-2xl overflow-hidden shadow-md border-2 border-[#D4AF37]/50 bg-gradient-to-r from-[#FFFDF9] via-[#FAF8F5] to-[#FFFDF9] transition-all"
         style={{
           boxShadow: isRevealed
             ? "0 0 16px rgba(212, 175, 55, 0.35), 0 4px 10px rgba(104, 22, 34, 0.12)"
@@ -301,9 +302,12 @@ export default function ScratchDate({
         }}
       >
         {/* Underneath Layer: Revealed Wedding Date */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-2.5 text-center bg-radial from-white via-[#FFFBF5] to-[#F5ECE1]">
+        <div
+          translate="no"
+          className="notranslate absolute inset-0 flex flex-col items-center justify-center p-2.5 text-center bg-radial from-white via-[#FFFBF5] to-[#F5ECE1]"
+        >
           {/* Subtle floral/ring icon */}
-          <div className="flex items-center gap-1.5 mb-0.5">
+          <div className="flex items-center gap-1.5 mb-0.5" translate="no">
             <span className="text-xs">💍</span>
             <span className="text-[9.5px] font-sans font-bold tracking-[0.3em] uppercase text-[#681622]">
               WEDDING DATE
@@ -312,12 +316,15 @@ export default function ScratchDate({
           </div>
 
           {/* Formatted Date */}
-          <h3 className="font-serif text-2xl sm:text-[26px] font-bold tracking-[0.25em] text-[#681622] leading-none my-0.5 drop-shadow-xs">
+          <h3
+            translate="no"
+            className="notranslate font-serif text-2xl sm:text-[26px] font-bold tracking-[0.25em] text-[#681622] leading-none my-0.5 drop-shadow-xs"
+          >
             {dateFormatted}
           </h3>
 
           {/* Full Day & Month */}
-          <p className="font-serif italic text-[11px] text-[#4A3E40] tracking-wide mt-0.5">
+          <p translate="no" className="notranslate font-serif italic text-[11px] text-[#4A3E40] tracking-wide mt-0.5">
             {fullDate}
           </p>
 
@@ -335,6 +342,7 @@ export default function ScratchDate({
         {/* Top Canvas Layer: Golden Scratch-Off Foil */}
         <canvas
           ref={canvasRef}
+          translate="no"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
@@ -343,7 +351,7 @@ export default function ScratchDate({
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onTouchCancel={handleTouchEnd}
-          className={`absolute inset-0 w-full h-full cursor-pointer touch-none transition-opacity duration-700 ease-out ${
+          className={`notranslate absolute inset-0 w-full h-full cursor-pointer touch-none transition-opacity duration-700 ease-out ${
             isRevealed ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
           style={{ touchAction: "none" }}
