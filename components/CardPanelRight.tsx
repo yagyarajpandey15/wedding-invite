@@ -45,10 +45,15 @@ export default function CardPanelRight({
               <ChampagneIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Tilak Ceremony</span>
               <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">
-                <span className="whitespace-nowrap">Sun, 07 Feb 2027</span>{" "}
+                <span className="whitespace-nowrap">Sunday, 07.02.2027</span>{" "}
                 <span className="whitespace-nowrap">• 03:00&nbsp;PM</span>
               </span>
-              <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Auspicious Tilak Rituals</span>
+              <span className="text-[11px] sm:text-xs text-[#681622] font-bold leading-tight mt-0.5">
+                Celebratory feast/Priti bhoj:- <span className="whitespace-nowrap">06:00&nbsp;PM</span>
+              </span>
+              <span className="text-[10px] sm:text-[11px] text-[#706466] leading-tight mt-0.5">
+                Auspicious tilak &amp; shagun ceremony
+              </span>
             </div>
             {/* Center dot node */}
             <div className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#681622] ring-2 ring-[#FAF8F5] z-10" />

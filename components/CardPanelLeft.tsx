@@ -191,8 +191,12 @@ export default function CardPanelLeft({
           <span className="whitespace-nowrap">• {wedding.tilak.time}</span>
         </p>
 
+        <p className="text-xs sm:text-sm font-bold text-[#681622] mt-0.5">
+          Celebratory feast/Priti bhoj:- <span className="whitespace-nowrap">06:00&nbsp;PM</span>
+        </p>
+
         <p className="text-xs sm:text-sm text-[#554a4c] mt-0.5">
-          Auspicious Tilak &amp; Ring Ceremony
+          {wedding.tilak.subtitle}
         </p>
 
         <button

@@ -21,8 +21,11 @@ export const wedding = {
   tilak: {
     title: "Tilak Ceremony",
     weekday: "Sunday",
-    date: "07 February 2027",
+    date: "07.02.2027",
+    fullDate: "07 February 2027",
     time: "03:00\u00A0PM",
+    feast: "Celebratory feast/Priti bhoj:- 06:00\u00A0PM",
+    subtitle: "Auspicious tilak & shagun ceremony",
     day: "07",
     month: "February",
     year: "2027",
@@ -92,7 +95,7 @@ export const wedding = {
     buttonText: "How to reach",
   },
   itinerary: [
-    { date: "Sunday, 07 Feb 2027 • 03:00\u00A0PM", title: "Tilak Ceremony", subtitle: "Auspicious Tilak Rituals", time: "03:00\u00A0PM", icon: "tilak", side: "left" },
+    { date: "Sunday, 07.02.2027 • 03:00\u00A0PM", title: "Tilak Ceremony", subtitle: "Auspicious tilak & shagun ceremony", time: "03:00\u00A0PM", icon: "tilak", side: "left" },
     { date: "Tuesday, 09 Feb 2027 • 11:00\u00A0AM", title: "Haldi Ceremony", subtitle: "Ubtan, Colors & Sunshine", time: "11:00\u00A0AM", icon: "haldi", side: "right" },
     { date: "Wednesday, 10 Feb 2027 • 08:00\u00A0PM", title: "Sangeet & Mocktail", subtitle: "Henna, Beats & Music", time: "08:00\u00A0PM", icon: "mocktail", side: "left" },
     { date: "Thursday, 11 Feb 2027", title: "Wedding Ceremony", subtitle: "Baraat Prasthan from Teyai at 07:00\u00A0PM", time: "07:00\u00A0PM", icon: "church", side: "right" },
