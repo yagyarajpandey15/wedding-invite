@@ -35,7 +35,7 @@ export default function CardPanelRight({
         </h3>
 
         {/* Vertical Timeline container with central vertical line and nodes */}
-        <div className="relative max-w-[340px] sm:max-w-[360px] mx-auto py-2">
+        <div className="relative max-w-[350px] sm:max-w-[370px] mx-auto py-2">
           {/* Vertical connecting line */}
           <div className="absolute left-1/2 top-3 bottom-3 w-[1.5px] bg-[#681622]/40 -translate-x-1/2" />
 
@@ -45,7 +45,8 @@ export default function CardPanelRight({
               <ChampagneIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Tilak Ceremony</span>
               <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">
-                Sun, 07 Feb 2027 <span className="whitespace-nowrap">• 03:00&nbsp;PM</span>
+                <span className="whitespace-nowrap">Sun, 07 Feb 2027</span>{" "}
+                <span className="whitespace-nowrap">• 03:00&nbsp;PM</span>
               </span>
               <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Auspicious Tilak Rituals</span>
             </div>
@@ -63,7 +64,8 @@ export default function CardPanelRight({
               <HaldiIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Haldi Ceremony</span>
               <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">
-                Tue, 09 Feb 2027 <span className="whitespace-nowrap">• 11:00&nbsp;AM</span>
+                <span className="whitespace-nowrap">Tue, 09 Feb 2027</span>{" "}
+                <span className="whitespace-nowrap">• 11:00&nbsp;AM</span>
               </span>
               <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Ubtan, Colors &amp; Sunshine</span>
             </div>
@@ -75,7 +77,8 @@ export default function CardPanelRight({
               <MocktailIcon className="w-6 h-6 text-[#681622] mb-1" />
               <span className="font-serif text-sm sm:text-[15px] font-bold text-[#681622] leading-tight">Sangeet &amp; Mocktail</span>
               <span className="text-xs sm:text-[13px] text-[#3D3536] font-semibold leading-tight mt-0.5">
-                Wed, 10 Feb 2027 <span className="whitespace-nowrap">• 08:00&nbsp;PM</span>
+                <span className="whitespace-nowrap">Wed, 10 Feb 2027</span>{" "}
+                <span className="whitespace-nowrap">• 08:00&nbsp;PM</span>
               </span>
               <span className="text-[11px] sm:text-xs text-[#706466] leading-tight mt-0.5">Henna, Beats &amp; Music</span>
             </div>
@@ -309,7 +312,7 @@ export default function CardPanelRight({
             />
           </div>
           <p className="text-[11px] sm:text-xs font-serif font-bold text-[#681622] tracking-wider uppercase mt-1.5">
-            Baraat Prasthan from Teyai at 07:00 PM
+            Baraat Prasthan from Teyai at <span className="whitespace-nowrap">07:00&nbsp;PM</span>
           </p>
 
           {/* Elegant Royal Sender Section */}

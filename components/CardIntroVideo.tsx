@@ -20,9 +20,19 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
     if (!hasStarted) {
       setHasStarted(true);
       if (videoRef.current) {
-        videoRef.current.play().catch((err) => {
-          console.warn("Play error:", err);
-        });
+        videoRef.current.muted = false; // Video audio is unmuted on user tap
+        videoRef.current
+          .play()
+          .then(() => {
+            // Unmuted video playing
+          })
+          .catch((err) => {
+            console.warn("Unmuted play blocked by browser, falling back to muted:", err);
+            if (videoRef.current) {
+              videoRef.current.muted = true;
+              videoRef.current.play();
+            }
+          });
       }
     }
   };
@@ -55,7 +65,6 @@ export default function CardIntroVideo({ onComplete }: CardIntroVideoProps) {
           src="/card-assets/card-opening.mp4"
           poster="/card-assets/envelope-poster-mobile.webp"
           playsInline
-          muted
           preload="auto"
           onEnded={handleVideoEnded}
           className="w-full h-full object-contain sm:object-cover relative z-0"
